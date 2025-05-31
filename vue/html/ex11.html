@@ -1,0 +1,97 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head>
+  <meta charset="UTF-8" /> 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" /> 
+  <title>Document</title>
+
+  <!--  Vue 3의 프로덕션(최종 배포) 버전 스크립트 불러오기 -->
+  <script src="https://cdn.jsdelivr.net/npm/vue@3.2.31/dist/vue.global.prod.js"></script>
+
+  <!--  Google Charts API 로더 스크립트 (그래프 라이브러리) -->
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+  <!--  자바스크립트 실행 코드 - defer로 HTML 렌더링 후 실행됨 -->
+  <script defer>
+    //  데이터 배열 - 메뉴 이름과 선택 수
+    let datas = [
+      ['치즈 김밥', 3],  
+      ['누드 김밥', 6],  
+      ['햄버거', 2],     
+      ['피자', 1],       
+      ['도넛', 3]        
+    ];
+
+    //  구글 차트에서 필요한 모듈 불러오기 - corechart(원형차트, 막대차트 등)
+    google.charts.load('current', { packages: ['corechart'] });
+
+    //  차트가 준비되면 drawFunc() 함수 실행하라고 등록
+    google.charts.setOnLoadCallback(() => drawFunc(datas)); // ✅ 초기에 datas 기반으로 그림
+
+    //  차트를 그리는 함수 정의
+    function drawFunc(arrayData) { // ✅ 외부에서 배열을 받아서 처리하게 변경
+      //  구글 차트가 인식할 수 있도록 데이터 구조 변환
+      let data = google.visualization.arrayToDataTable([  
+        ['종류', '갯수'],   // 첫 줄은 제목(헤더) 역할
+        ...arrayData        // 현재 전달받은 배열 기준으로 차트 생성
+      ]);
+
+      //  차트 옵션 설정 (타이틀, 3D 여부 등)
+      let options = {
+        title: '먹고 싶은 음식', // 차트 제목
+        is3D: true               // 3D 원형 차트로 표시
+      };
+
+      //  PieChart(원형 차트) 객체 생성 → HTML 요소(chart_div)에 출력될 차트
+      let chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+
+      //  위에서 만든 데이터와 옵션을 사용해서 차트를 실제로 그림
+      chart.draw(data, options);
+    }
+  </script>
+</head>
+<body>
+  <h2>구글 지원 원 그래프 출력</h2> 
+  메뉴 선택 결과 : <br /> 
+
+  <!--  차트가 출력될 HTML 영역 (ID가 chart_div) -->
+  <div id="chart_div" style="height: 500px;"></div>
+
+  <!--  Vue가 사용할 영역 (현재는 내용 없음) -->
+  <div id="app">
+        <li v-for="(value, idx) in dataArray" :key="idx">
+            {{value[0]}} : {{value[1]}}
+            <button @click="addFunc(idx)">1 증가</button>&nbsp;
+            <button @click="subFunc(idx)">1 감소</button>
+        </li>
+  </div>
+
+  <!--  Vue 앱을 마운트하는 스크립트 -->
+  <script defer>
+    const { createApp } = Vue; // Vue에서 앱 생성 메서드 가져오기
+
+    createApp({
+      data() {
+        return {
+         dataArray: datas //  변수명 일치, datas를 그대로 사용 (참조)
+        };
+      },
+      methods: {
+        addFunc(idx){
+            this.dataArray[idx][1]++;       //  선택 수 1 증가
+            this.updateChart();             //  변경 후 차트 다시 그림
+        },
+        subFunc(idx){
+            if (this.dataArray[idx][1] > 0) { //  0 이하로 내려가지 않게 방지
+              this.dataArray[idx][1]--;     //  선택 수 1 감소
+              this.updateChart();           //  변경 후 차트 다시 그림
+            }
+        },
+        updateChart(){
+            drawFunc(this.dataArray);       //  현재 배열 기준으로 차트 다시 그림
+        },
+      }
+    }).mount("#app"); 
+  </script>
+</body>
+</html>

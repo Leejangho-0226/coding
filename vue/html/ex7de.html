@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script> 
+</head>
+<body>
+    조건부 랜더링을 위한 "v-if, v-show" 연습
+    <div id="app">
+        <span v-show="season">  <!-- v-show는 true일 때만 보임, false일 땐 display:none 처리됨 -->
+            <p>가벼운 옷 입기 딱 좋음 show</p> <!-- F12로 보면 항상 DOM 안에 존재하고 스타일로 숨겨짐 -->
+        </span>
+
+        <p v-if="season">가벼운 옷 입기 좋음 if</p> <!-- v-if는 조건이 false면 이 <p>태그 자체가 DOM에서 사라짐 -->
+
+        <button v-on:click="season = !season">season 결과 변경</button> <!-- 클릭할 때마다 season true/false 토글 -->
+
+        <!--v-if를 갖는 template 활용 조건부 그룹 : template는 랜더링에 참여x, 해당 태그의 하위 태그에는 동작이 전파 -->
+        <template v-if="season"> <!-- template 자체는 DOM에 안 보임, 내부 요소만 조건에 따라 보여짐 -->
+            <div>반팔 옷 입는 계절</div> <!-- season이 true일 때만 이 블럭 DOM에 존재 -->
+            <div>모기의 계절</div>
+        </template>
+        <template v-else> <!-- season이 false일 때만 이 블럭 DOM에 존재 -->
+            <div>긴 옷 입는 계절</div>
+            <div>감기의 계절</div>
+        </template>
+
+        <br/> <!--체크박스의 상태에 따른 조건부 랜더링-->
+        <label>체크 표시 확인
+            <input type="checkbox" v-model="myVisible"/> <!-- v-model은 myVisible 값과 양방향으로 연결됨 -->
+        </label>
+
+        <p v-if="myVisible">Check ON</p>  <!-- myVisible이 true일 때만 표시됨 -->
+        <p v-else="myVisible">Check OFF</p> <!-- myVisible이 false일 때 표시됨 -->
+
+        <hr/>
+        <!--count 값에 따라 다른 내용을 랜더링 -->
+        <p v-if="count === 10">{{count}}번 클릭!</p> <!-- count가 정확히 10일 때만 표시됨 -->
+        <p v-else-if="count >= 1">현재 클릭 수 : {{count}}</p> <!-- 1 이상이고 10은 아닐 때 표시됨 -->
+        <p v-else>버튼을 클릭하세요</p> <!-- count가 0일 때만 표시됨 -->
+
+        <!-- count가 10이 되면 비활성화되는 버튼 -->
+        <button v-bind:disabled="count === 10" v-on:click="addFunc">숫자 늘리기</button> 
+        <!-- v-bind는 HTML 속성을 동적으로 바인딩, count가 10이면 disabled 적용됨 -->
+        
+        <button :disabled="count === 10" @click="addFunc">숫자 늘리기</button> 
+        <!-- 위 줄과 같은 기능, 축약형으로 작성 -->
+        <!-- :은 v-bind의 축약형 / @은 v-on의 축약형 -->
+
+        <!-- ✅ v-show 작동 방식 설명
+             - season이 true일 때만 화면에 표시됨
+             - 단, DOM 요소(예: <span> 태그)는 항상 남아 있음
+             - false가 되면 display: none으로 숨겨짐
+             - F12 개발자도구로 보면 <span> 요소가 그대로 존재하지만 스타일이 display: none으로 바뀌는 것을 확인 가능
+             - 초기 렌더링 시 DOM에 그려지고, 이후에는 CSS만 조작함 (빠름)
+             - 자주 바뀌는 요소에 적합함 (토글 메뉴, 모달 창 등)
+        -->
+
+        <!-- ✅ v-if 작동 방식 설명
+             - season이 true일 때만 해당 <p> 요소 자체가 생성됨
+             - false가 되면 아예 DOM에서 제거됨
+             - F12 개발자도구에서 확인해보면, season이 false일 때는 <p> 태그 자체가 완전히 사라짐
+             - 상태가 바뀔 때마다 DOM을 새로 생성/제거하므로 렌더링 비용이 조금 더 큼
+             - 초기에 안 보이거나 무거운 컴포넌트에 적합
+        -->
+
+        <!-- ✅ 기능 및 렌더링 관점 차이 요약
+             📌 v-show
+                - 조건이 false여도 DOM은 남아 있음
+                - CSS(display: none)로 숨김 처리
+                - 초기에 렌더링되고 이후 숨김만 처리 → 렌더링 성능 빠름
+                - 토글이 자주 일어나는 UI에 적합
+
+             📌 v-if
+                - 조건이 false면 DOM 자체가 아예 없어짐
+                - 조건이 true일 때마다 다시 생성됨
+                - 렌더링 성능은 느릴 수 있지만, DOM 절약 가능
+                - 초기 조건이 false인 경우, 무거운 요소에 유리
+
+             ⚠️ 차이 요약:  
+                 - v-show는 "한 번 렌더링 후 보여주기/숨기기만 조절" (DOM 유지)  
+                 - v-if는 "조건이 true일 때만 DOM 생성" (DOM 생성/삭제 반복)  
+        -->
+    </div>
+
+    <script>
+        const { createApp } = Vue;
+
+        createApp({
+            data() {
+                return {
+                    season: true,       // 계절상태를 true(여름)으로 초기화
+                    myVisible: false,   // 체크박스 상태를 false로 초기화   
+                    count: 0,           // 카운트 초기값
+                }
+            },
+            methods: {
+                addFunc() {
+                    this.count++; // 버튼 누를 때마다 count 1 증가
+                }
+            }
+        }).mount("#app");
+    </script>
+</body>
+</html>

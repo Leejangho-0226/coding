@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script defer src="../js/ex8.js"></script>
+</head>
+<body>
+  <!-- 반복 렌더링을 위한 v-for 디렉티브 연습 -->
+  <div id="app">
+    <h3>🥤 마시고 싶은 음료들</h3>
+    <ul>
+      <li v-for="item in list" :key="item">{{ item }}</li>
+    </ul>
+
+    <hr />
+
+    <ul>
+      <li v-for="(item, i) in list" :key="i">({{ i }}) {{ item }}</li>
+    </ul>
+
+    <hr />
+
+    <h3>🚗 여행지 목록</h3>
+    <ol>
+      <li v-for="city in objArray" :key="city.name">
+        {{ city.name }}까지 소요시간 : {{ city.taketime }}
+      </li>
+    </ol>
+
+    <hr />
+
+    <h3>📐 구구단 3단</h3>
+    <div v-for="n in 9" :key="n">3 * {{ n }} = {{ 3 * n }}</div>
+
+    <hr />
+
+    <h3>🧪 배열 자료의 참조, 추가, 수정, 삭제 연습</h3>
+    <ul>
+      <li v-for="item in myArr" :key="item">{{ item }}</li>
+    </ul>
+    <button @click="addList">자료 추가(맨뒤)</button>
+    <button @click="addListIndex(2)">자료 삽입(특정)</button>
+    <button @click="changeList(2)">자료 변경</button>
+    <button @click="deleteList">자료 삭제</button>
+
+    <hr/>
+
+    <h3>🧩 for, if문을 한 개의 엘리멘트 내에서 사용 - 주의</h3>
+    <!-- 성능 상의 이유로 v-for와 v-if는 분리한다 -->
+    <template v-for="i in numArr" :key="i">
+      <span v-if="i % 2 === 1">{{ i }}&nbsp;&nbsp;</span>
+    </template>
+  </div>
+</body>
+</html>

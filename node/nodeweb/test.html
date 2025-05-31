@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+</head>
+<body>
+  난 자랑스러운 Test file이야!
+  <hr/>
+  <input id="name" type="text" value="summer" />
+  <button onclick="getSeason()">API 요청</button>
+
+  <script>
+    function getSeason() {
+      const name = document.querySelector("#name").value;
+
+      fetch(`http://localhost:3000/user/${name}`)        // RESTful API 요청
+        .then((response) => response.json())             // 응답을 JSON으로 변환
+        .then((data) => {
+          console.log(data);             // 받은 데이터를 콘솔에 출력
+          alert(`받은 데이터: ${JSON.stringify(data)}`); // 알림창으로도 출력
+        })
+        .catch((err) => {
+          console.error("에러 발생:", err);              // 에러 처리
+        });
+    }
+  </script>
+</body>
+</html>

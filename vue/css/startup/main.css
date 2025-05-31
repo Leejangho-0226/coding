@@ -1,0 +1,24 @@
+h2 {
+  font-size: 32px;
+  text-align: center;
+  color: #ff3e6c;
+  border-bottom: 4px double #ff3e6c;
+  padding-bottom: 10px;
+}
+
+button {
+  background-color: #ff3e6c;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  margin: 8px;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+button:hover {
+  background-color: #e6325c;
+  transform: translateY(-2px);
+}

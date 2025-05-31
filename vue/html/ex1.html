@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <!-- ✅ jQuery CDN (defer 적용) -->
+    <script src="https://code.jquery.com/jquery-latest.js" defer></script>
+
+    <!-- ✅ jQuery 코드 (defer 적용, DOMContentLoaded 이벤트로 안전하게 실행) -->
+    <script defer>
+      document.addEventListener("DOMContentLoaded", function () {
+        $("#msg").text("jQuery 메세지"); // ✅ jQuery가 span 태그(id="msg")에 텍스트 삽입
+      });
+    </script>
+
+    <!-- ✅ Vue 3 CDN (defer 적용) -->
+    <script src="https://unpkg.com/vue@v3.1.1" defer></script>
+
+    <!-- ✅ Vue 코드 (app1용) - defer + DOMContentLoaded -->
+    <script defer>
+      document.addEventListener("DOMContentLoaded", function () {
+        const hi = { msg: "뷰 메세지: 안녕?" }; // ✅ Model 역할: 실제로 사용할 데이터 객체 정의
+        // 이 객체는 Vue의 data()에서 그대로 반환되어 화면(View)과 연결됨
+
+        Vue.createApp({
+          //  ViewModel 역할: Vue 인스턴스 생성 → View와 Model을 연결해주는 중간 관리자, Vue 객체 생성
+          data() {
+            return hi; //  Model → ViewModel에 연결: 외부에서 선언한 객체를 그대로 반환함
+            // ViewModel은 msg라는 데이터를 추적하며, View에 자동 반영함
+          },
+        }).mount("#app1"); //  View와 연결: id="app1" 요소에 Vue가 마운트되어 {{msg}}가 반응형으로 작동
+      });
+    </script>
+
+    <!--  외부 Vue 2 코드 (defer 적용, 내용은 ex1.js에 작성됨) -->
+    <script src="../js/ex1.js" defer></script>
+
+    <!--  script 태그의 defer 속성은 js 처리 중 DOM 파싱이 계속 진행되도록 함 -->
+  </head>
+
+  <body>
+    jQuery 출력 결과 : <span id="msg"></span>
+    <!--  jQuery가 동작해서 이 부분에 텍스트를 삽입함 -->
+    <hr />
+    vue 출력 결과 :
+    <div id="app1">{{msg}}</div>
+    <!--  이중 중괄호 {{msg}}는 Vue.js의 데이터 바인딩 문법.
+    이 부분은 Vue 인스턴스에서 정의한 'msg'라는 데이터를 화면에 표시하는 자리입니다.
+    HTML이 로드되고 Vue가 동작하면 {{msg}}는 실제 값으로 바뀝니다. 예: msg가 "안녕"이면 → "안녕" 출력 -->
+
+    <hr />
+    vue 출력 결과2 :
+    <div id="app2">
+      <span>{{message1}}</span><br />
+      <span>{{message2}}</span><br />
+      <span>{{message3}}</span><br />
+      <button @click="updateMessage">메세지 갱신</button>
+      
+    </div>
+  </body>
+</html>
+
+<!--  MVVM은 Model-View-ViewModel의 약자,
+     사용자의 입력을 데이터(Model)로 연결하고,
+     화면(View)을 자동으로 갱신해주는 구조 -->

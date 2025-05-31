@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>직원 목록</title>
+    <link rel="stylesheet" th:href="@{/css/Business.css}">
+</head>
+<body>
+
+<!-- 인덱스 페이지로 돌아가는 링크 추가 (CSS로 스타일 적용) -->
+<div>
+    <a th:href="@{/}" class="index-link">🔙 인덱스 페이지로</a>
+</div>
+
+<h2>👤 직원 목록 👤</h2>
+
+<!-- 직원 리스트 -->
+<table border="1">
+    <tr>
+        <th>사번</th>
+        <th>이름</th>
+        <th>직급</th>
+        <th>부서명</th>
+        <th>관리고객</th>
+    </tr>
+
+    <tr th:each="emp : ${emplist}">
+        <td th:text="${emp.jikwonno}"></td>
+        <td>
+            <!-- 직원 이름 클릭 시 고객 목록으로 이동 -->
+            <a th:href="@{/customerlist(jikwonno=${emp.jikwonno})}" th:text="${emp.jikwonname}"></a>
+        </td>
+        <td th:text="${emp.jikwonjik}"></td>
+        <td th:text="${emp.buser.busername}"></td>
+        <!-- 관리고객이 있으면 'O', 없으면 'X' -->
+        <td th:text="${emp.gogeks.size() > 0 ? 'O' : 'X'}"></td>
+    </tr>
+</table>
+
+</body>
+</html>

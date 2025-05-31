@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>직원과 부서 정보</title>
+<link rel="stylesheet" href="/css/index.css"> <!-- CSS 파일 연결 -->
+</head>
+<body class="container">
+<h3>직원과 부서 정보</h3>
+
+<a th:href="|javascript:history.back()|" class="btn">이전</a> <!-- 버튼 스타일 추가 -->
+
+<table class="table"> <!-- 테이블 스타일 적용 -->
+    <tr>
+        <th>사번</th><th>직원명</th><th>부서명</th><th>부서전화</th><th>직급</th><th>연봉</th>
+    </tr>
+    <th:block th:if="${blist.size > 0}">
+    <tr th:each="data : ${blist}">
+        <td th:text="${data.jikwonno}"></td>
+        <td th:text="${data.jikwonname}"></td>
+        <td th:text="${data.buser.busername}"></td>
+        <td th:text="${data.buser.busertel}"></td>
+        <td th:text="${data.jikwonjik}"></td>
+        <td th:text="${data.jikwonpay}"></td>
+    </tr>
+    </th:block>
+</table>
+
+</body>
+</html>

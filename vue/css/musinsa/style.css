@@ -1,0 +1,12 @@
+body {
+  font-family: 'Noto Sans KR', sans-serif;     /* 감성적이고 또렷한 한글 폰트 */
+  background-color: #ffffff;                   /* 배경은 완전 흰색 */
+  color: #111111;                              /* 글자색은 진한 검정 */
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  color: #000000;                              /* 링크도 검정 */
+  text-decoration: none;                       /* 밑줄 제거 */
+}

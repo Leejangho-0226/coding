@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../css1/ex10.css" />
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script defer src="../js/ex10.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <h1>📖성적 관리📖</h1>
+
+      <div class="form-group">
+        <label>이름 :</label>
+        <input type="text" v-model="name" />
+      </div>
+      <div class="form-group">
+        <label>자 바 :</label>
+        <input type="number" v-model.number="java" />
+      </div>
+      <div class="form-group">
+        <label>리액트 :</label>
+        <input type="number" v-model.number="react" />
+      </div>
+      <div class="form-group">
+        <label>뷰 :</label>
+        <input type="number" v-model.number="vue" />
+      </div>
+
+      <!--  버튼 위치 정렬 -->
+      <div class="form-actions">
+        <button @click="addScore">확인</button>
+      </div>
+
+      <h3>🎉입력 결과🎊</h3>
+      <ul>
+        <li
+          v-for="person in people"
+          :key="person.name"
+          :class="{ highlight: person.total >= 200 }"
+        >
+          {{ person.name }}: {{ person.java }}, {{ person.react }}, {{
+          person.vue }} 총점 : {{ person.total }}
+        </li>
+      </ul>
+
+      <h3>전체 통계</h3>
+      <p id="totalInfo">
+        인원수 : {{ people.length }} 전체 총점 : {{ totalScore }}
+      </p>
+    </div>
+  </body>
+</html>

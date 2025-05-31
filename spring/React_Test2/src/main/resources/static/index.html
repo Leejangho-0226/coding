@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>SpringBoot + MyBatis JSON 확인</title>
+  <style>
+    body {
+      font-family: Arial;
+      padding: 20px;
+    }
+    section {
+      margin-bottom: 40px;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin-top: 10px;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 8px;
+      text-align: center;
+    }
+    th {
+      background-color: #f0f0f0;
+    }
+  </style>
+</head>
+<body>
+  <h1>SpringBoot + MyBatis JSON 출력 화면</h1>
+
+  <!-- ✅ 1. 구구단 -->
+  <section>
+    <h2>📘 구구단</h2>
+    <input type="number" id="danInput" placeholder="단 입력" />
+    <button onclick="fetchGugudan()">확인</button>
+    <ul id="guguResult"></ul>
+  </section>
+
+  <!-- ✅ 2. 부서정보 -->
+  <section>
+    <h2>🏢 부서정보</h2>
+    <button onclick="fetchBuser()">부서 전체 조회</button>
+    <table id="buserTable">
+      <thead>
+        <tr>
+          <th>부서번호</th>
+          <th>부서명</th>
+          <th>전화</th>
+          <th>인원수</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </section>
+
+  <!-- ✅ 3. 직원정보 -->
+  <section>
+    <h2>👤 직원정보</h2>
+    <input type="text" id="buserNameInput" placeholder="부서명 입력 (예: 총무부)" />
+    <button onclick="fetchJikwon()">직원 조회</button>
+    <table id="jikwonTable">
+      <thead>
+        <tr>
+          <th>사번</th>
+          <th>이름</th>
+          <th>부서명</th>
+          <th>직급</th>
+          <th>고객수</th>
+          <th>연봉</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </section>
+
+  <script>
+    function fetchGugudan() {
+      const dan = document.getElementById("danInput").value;
+      fetch(`/api/gugu?dan=${dan}`)
+        .then(res => res.json())
+        .then(data => {
+          const ul = document.getElementById("guguResult");
+          ul.innerHTML = "";
+          data.result.forEach(line => {
+            const li = document.createElement("li");
+            li.textContent = line;
+            ul.appendChild(li);
+          });
+        });
+    }
+
+    function fetchBuser() {
+      fetch("/api/buser")
+        .then(res => res.json())
+        .then(data => {
+          const tbody = document.querySelector("#buserTable tbody");
+          tbody.innerHTML = "";
+          data.forEach(b => {
+            const row = `<tr>
+              <td>${b.buserno}</td>
+              <td>${b.busername}</td>
+              <td>${b.busertel}</td>
+              <td>${b.count}</td>
+            </tr>`;
+            tbody.innerHTML += row;
+          });
+        });
+    }
+
+    function fetchJikwon() {
+      const buser = document.getElementById("buserNameInput").value.trim();
+      const url = buser ? `/api/jikwon?buser=${buser}` : "/api/jikwon";
+      fetch(url)
+        .then(res => res.json())
+        .then(data => {
+          const tbody = document.querySelector("#jikwonTable tbody");
+          tbody.innerHTML = "";
+          data.forEach(j => {
+            const row = `<tr>
+              <td>${j.jikwonno}</td>
+              <td>${j.jikwonname}</td>
+              <td>${j.busername}</td>
+              <td>${j.jik}</td>
+              <td>${j.gogekcount}</td>
+              <td>${j.jikwonpay}</td>
+            </tr>`;
+            tbody.innerHTML += row;
+          });
+        });
+    }
+  </script>
+</body>
+</html>

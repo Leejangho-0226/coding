@@ -1,0 +1,159 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap');
+
+* {
+  box-sizing: border-box;
+  font-family: 'Noto Sans KR', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #f8f8f8;
+  color: #2e2e2e;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 60px;
+  line-height: 1.8;
+  font-size: 16px;
+}
+
+/* 제목 */
+h1, h2, h3 {
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 20px;
+  letter-spacing: -0.5px;
+}
+
+/* 링크 */
+a {
+  color: #b28f4f;
+  text-decoration: none;
+  border-bottom: 1px solid #b28f4f;
+  transition: all 0.3s ease;
+}
+
+a:hover {
+  color: #8a6e35;
+  border-bottom: 1px dashed #8a6e35;
+}
+
+/* 테이블 */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 30px;
+}
+
+th, td {
+  border: 1px solid #dcdcdc;
+  padding: 12px 16px;
+  text-align: left;
+  font-size: 15px;
+}
+
+th {
+  background-color: #fafafa;
+  color: #555;
+}
+
+/* 버튼 */
+button, .btn-update, .btn-delete {
+  background-color: #1a1a1a;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 6px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover,
+.btn-update:hover,
+.btn-delete:hover {
+  background-color: #333;
+}
+
+/* 입력 필드 */
+input[type="text"],
+textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 15px;
+  margin-bottom: 20px;
+}
+
+/* 홈 링크 */
+.link-home {
+  display: inline-block;
+  margin-bottom: 20px;
+  color: #b28f4f;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.link-home:hover {
+  color: #8a6e35;
+  border-bottom: 1px dashed #8a6e35;
+}
+
+/* 홈 버튼 */
+.home-btn {
+  display: inline-block;
+  margin-top: 30px;
+  padding: 12px 24px;
+  background-color: #1a1a1a;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  text-decoration: none;
+}
+
+.home-btn:hover {
+  transform: scale(1.05);
+  background-color: #333;
+}
+
+/* index 전용 */
+.index-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  text-align: center;
+}
+
+.index-title {
+  font-size: 48px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 20px;
+}
+
+.index-subtitle {
+  font-size: 20px;
+  color: #555;
+  margin-bottom: 40px;
+}
+
+.latest-post {
+  margin-bottom: 20px;
+}
+
+.latest-post h2 {
+  font-size: 22px;
+  color: #333;
+}
+
+.latest-post p {
+  color: #777;
+  font-size: 14px;
+}

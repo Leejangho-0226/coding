@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>고객 정보 목록</title>
+</head>
+<body>
+    <h2>👥 고객 리스트 👥</h2>
+    <form th:action="@{/list}" method="get">
+        <label><input type="radio" name="gender" value="all" th:checked="${gender == 'all'}"> 전체</label>
+        <label><input type="radio" name="gender" value="남" th:checked="${gender == '남'}"> 남</label>
+        <label><input type="radio" name="gender" value="여" th:checked="${gender == '여'}"> 여</label>
+        <button type="submit">고객 출력</button>
+    </form>
+
+    <p>총 인원수: <span th:text="${count}">0</span>명</p>
+
+    <table border="1">
+        <tr>
+            <th>고객번호</th>
+            <th>고객명</th>
+            <th>전화번호</th>
+            <th>성별</th>
+            <th>나이</th>
+        </tr>
+        <tr th:each="g : ${list}">
+            <td th:text="${g.gogekno}"></td>
+            <td th:text="${g.gogekname}"></td>
+            <td th:text="${g.gogektel}"></td>
+            <td th:text="${g.gender}"></td>
+            <td th:text="${g.age}"></td>
+        </tr>
+    </table>
+</body>
+</html>

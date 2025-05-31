@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>직원 목록</title>
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet">
+</head>
+<body class="bg-light">
+    <div class="container py-5">
+        <!-- ✅ 로그아웃 버튼 (Bootstrap 적용) -->
+        <div th:if="${session.nameok != null}" class="text-end mb-3"> <!-- 오른쪽 정렬 + 아래 마진 -->,<!-- 세션키 : nameok -->
+            <a th:href="@{/logout}" class="btn btn-danger btn-sm">로그아웃</a>
+        </div>
+
+        <h2 class="text-center mb-4">📋 직원 정보</h2>
+
+        <table class="table table-bordered table-hover text-center">
+            <thead class="table-dark">
+                <tr>
+                    <th>사번</th>
+                    <th>이름</th>
+                    <th>직급</th>
+                    <th>성별</th>
+                    <th>부서명</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="jik : ${jlist}">
+                    <td>[[${jik.jikwonno}]]</td>
+                    <td>[[${jik.jikwonname}]]</td>
+                    <td>[[${jik.jikwonjik}]]</td>
+                    <td>[[${jik.jikwongen}]]</td>
+                    <td>[[${jik.buser.busername}]]</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

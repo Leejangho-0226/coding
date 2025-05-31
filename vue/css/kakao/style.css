@@ -1,0 +1,92 @@
+/* 전체 페이지 배경과 정렬 */
+body {
+  font-family: 'Noto Sans KR', sans-serif;     /* 부드러운 고딕 계열 폰트 */
+  background-color: #f9f9f9;                   /* 연한 회색 배경 */
+  margin: 0;
+  padding: 30px;
+  color: #333;
+}
+
+/* 컨테이너 중앙 정렬 */
+#app {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 30px;
+  background-color: #ffffff;                   /* 흰 배경 카드 느낌 */
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);  /* 아주 연한 그림자 */
+}
+
+/* 제목 */
+h2 {
+  text-align: center;
+  color: #222;
+  margin-bottom: 20px;
+}
+
+/* 입력 필드 공통 */
+input[type="text"],
+select {
+  width: 100%;
+  padding: 10px;
+  margin-top: 6px;
+  margin-bottom: 14px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+/* 버튼 공통 스타일 */
+button {
+  background-color: #FEE500;                  /* 카카오 노랑 */
+  color: #000;
+  border: none;
+  padding: 10px 16px;
+  margin: 4px 4px 12px 0;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+button:hover {
+  background-color: #ffd900;
+}
+
+/* 비활성 버튼 */
+button:disabled {
+  background-color: #e0e0e0;
+  color: #aaa;
+  cursor: not-allowed;
+}
+
+/* 라디오 버튼 줄 정렬 */
+label {
+  margin-right: 12px;
+  font-size: 14px;
+}
+
+/* 테이블 스타일 */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: center;
+}
+
+th {
+  background-color: #f3f3f3;
+  font-weight: bold;
+}
+
+tr:hover {
+  background-color: #fffde7;                  /* 연노랑 hover 효과 */
+}

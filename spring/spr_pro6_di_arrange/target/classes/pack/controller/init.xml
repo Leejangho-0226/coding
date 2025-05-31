@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       
+   <bean id="msgImpl" class="pack.controller.MessageImpl" scope="singleton">
+  	 <!-- 컨트럴러에 주입 -->
+     <!--  
+      <constructor-arg index="1"> 
+         <value>홍길동</value>
+      </constructor-arg>   
+      <constructor-arg index="0">
+         <value>고길동</value>
+      </constructor-arg>
+      -->
+      <constructor-arg index="1" value="길동이" type="java.lang.String" />
+      <constructor-arg index="0" value="희동이" type="String"/>
+      <constructor-arg index="2" value="25" type="int"/> <!-- 숫자로 적으려면 타입을 int로 받으면 된다 -->
+      <constructor-arg index="3" type="pack.model.MyInfo" ref="sbs" />
+      
+      
+      <!-- setter injection -->
+      <property name="spec">
+      		<value>웹프로그래밍 가능</value>
+      </property>
+       <property name="ourInfo">
+      		<ref bean="ourInfo"/>
+      </property>
+      <property name="outFileInter">
+      	<ref bean="outFileInterImpl"/>
+      </property>
+   </bean>
+   
+   <bean id="myInfo" name="kbs,mbc,sbs" class="pack.model.MyInfo" />
+   <bean id="ourInfo" class="pack.model.OurInfo" />
+   <bean id="outFileInterImpl" class="pack.other.OutFileInterImpl">
+   		<property name="filePath" value="c:/workspr/good.txt" />
+   	</bean>
+ </beans>

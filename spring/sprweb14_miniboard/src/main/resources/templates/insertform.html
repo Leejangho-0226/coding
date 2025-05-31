@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>글 작성</title>
+  <link rel="stylesheet" href="/css/board.css">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div class="center-wrap">
+
+    <div style="margin-bottom: 20px;">
+      <a href="/" class="link-home">🏠 메인으로</a>
+    </div>
+
+    <h2>✍ 새 글 작성</h2>
+
+    <form action="/insert" method="post" th:object="${springboardBean}">
+      작성자: <input type="text" th:field="*{author}" required><br>
+      제목: <input type="text" th:field="*{title}" required><br>
+      내용:<br>
+      <textarea th:field="*{content}" rows="6" required></textarea><br>
+
+      <div style="display: flex; justify-content: space-between;">
+        <a href="/list">📋 목록</a>
+        <button type="submit">등록</button>
+      </div>
+    </form>
+
+  </div>
+</body>
+</html>

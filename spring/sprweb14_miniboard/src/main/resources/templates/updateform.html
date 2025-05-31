@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>글 수정</title>
+  <link rel="stylesheet" href="/css/board.css">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div class="center-wrap">
+
+    <div style="margin-bottom: 20px;">
+      <a href="/" class="link-home">🏠 메인으로</a>
+    </div>
+
+    <h2>✏ 글 수정</h2>
+
+    <form action="/update" method="post">
+      <input type="hidden" name="num" th:value="${data.num}">
+      작성자: <input type="text" name="author" th:value="${data.author}" required><br>
+      제목: <input type="text" name="title" th:value="${data.title}" required><br>
+      내용:<br>
+      <textarea name="content" rows="6" th:text="${data.content}" required></textarea><br>
+
+      <div style="display: flex; justify-content: space-between;">
+        <a href="/list">📋 목록</a>
+        <button type="submit" class="btn-update">수정 완료</button>
+      </div>
+    </form>
+
+    <script src="/js/board.js"></script>
+
+  </div>
+</body>
+</html>

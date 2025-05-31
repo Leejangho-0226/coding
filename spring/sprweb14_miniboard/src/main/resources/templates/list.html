@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>게시글 목록</title>
+  <link rel="stylesheet" href="/css/board.css">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div class="center-wrap">
+
+    <div style="margin-bottom: 20px;">
+      <a href="/" class="link-home">🏠 메인으로</a>
+    </div>
+
+    <h2>📋 게시글 목록</h2>
+
+    <table>
+      <thead>
+        <tr>
+          <th>번호</th>
+          <th>작성자</th>
+          <th>제목</th>
+          <th>작성일</th>
+          <th>조회수</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="row : ${list}">
+          <td th:text="${row.num}"></td>
+          <td th:text="${row.author}"></td>
+          <td><a th:href="@{/detail(num=${row.num})}" th:text="${row.title}"></a></td>
+          <td th:text="${#temporals.format(row.bwrite, 'yyyy-MM-dd')}"></td>
+          <td th:text="${row.readcnt}"></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div style="text-align:right; margin-top:20px;">
+      <a href="/insert">✍ 글쓰기</a>
+    </div>
+
+  </div>
+</body>
+</html>

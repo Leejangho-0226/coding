@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" /> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /> 
+    <title>이벤트연습</title> 
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script> 
+
+    <script>
+      // DOM이 완전히 준비된 후 Vue 앱을 실행함
+      document.addEventListener("DOMContentLoaded", function () {
+        const app = Vue.createApp({ // Vue 애플리케이션을 생성
+          data() {
+            return {
+              number1: 0, // 주사위의 시행 결과를 저장할 변수수
+              number2: 0, // 주사위의 시행결과에 10을 더한 값을 저장할 변수
+              count: 0,   // 숫자 증가 테스트용 변수
+            };
+          },
+          methods: {
+            rollDiceEvent() {
+              // 주사위 시행 시 처리 핸들러
+              // 1~6까지의 랜덤한 정수를 생성함
+              let num = Math.floor(Math.random() * 6 + 1); // Math.random()은 0 이상 1 미만의 실수 → *6 → 0~5.999... → +1로 1~6
+              this.number1 = num; // 랜덤 숫자를 number1에 저장 → 화면에 자동 반영됨
+            },
+            rollDiceEvent2(arg) {
+              // 두 번째 주사위 이벤트 (10 추가)
+              // 외부에서 전달받은 값(arg)를 더함 (예: 10)
+              let num = Math.floor(Math.random() * 6 + 1 + arg); // 주사위 결과 + 인자(arg)
+              this.number2 = num; // number2에 저장하여 화면에 표시
+            },
+          },
+        }).mount("#app"); // Vue 앱을 #app이라는 id를 가진 요소에 연결(mount)
+      });
+    </script>
+
+    <script defer>
+      document.addEventListener("DOMContentLoaded", function () {
+        const app2 = Vue.createApp({
+          data() {
+            return {
+              message: "안녕 뷰 이벤트 연습중", // 부모 컴포넌트에서 자식 컴포넌트로 전달할 메세지 
+            };
+          }
+        });
+
+        app2.component('child-component', { // 전역 컴포넌트 등록
+          props: ['propsdate'], // 뷰 템플릿에서 컴포넌트의 속성값으로 명시해 준 이름을 props 키 배열로 매칭
+          // 부모 컴포넌트로부터 propsdate라는 데이터를 전달받음
+          // 주의: 'propsdata', 'props_data' 가능하지만, propsData처럼 카멜케이스는 HTML에서 안됨
+          // Vue 컴포넌트 간 통식 방식 : props와 $emit이 기본적 통신도구로 활용됨 
+          // props는 단 방향
+          template: '<span>{{ propsdate }}</span>' // props로 받은 데이터를 화면에 출력
+        });
+
+        app2.mount("#app2"); 
+      });
+    </script>
+
+    <script defer>
+      document.addEventListener("DOMContentLoaded", function () {
+        const app3 = Vue.createApp({
+          data() {
+            return {
+              msg: "", // 자식 컴포넌트로부터 이벤트를 전달받았을 때 표시할 메시지를 저장할 변수
+              // 자식이 클릭 이벤트로 $emit('show-log')을 하면, 이 msg가 화면에 바뀜
+            };
+          },
+          methods: {
+            printText(){
+                const logMessage = "이벤트 수신 성공"; // 출력할 메시지를 상수로 저장
+                console.log(logMessage); // 콘솔에 로그 출력 (개발자 도구에서 확인 가능)
+                this.msg = logMessage;   // 부모 컴포넌트의 데이터 msg를 바꿔서 화면에 표시되게 함
+                // 즉, 이 printText 메서드는 자식으로부터 이벤트(@show-log)를 받았을 때 실행되며,
+                // this.msg를 바꾸는 역할을 함 → <h2>{{msg}}</h2> 이 부분에 반응함
+              }
+          }
+        });
+
+        app3.component('child-component', { // 하위 컴포넌트트
+          template: '<button @click="showLog">클릭</button>', // 버튼 클릭 시 showLog 메서드 실행
+          methods:{
+              showLog(){
+                  this.$emit('show-log');  // 보내는 컴포넌트에서 $emit() 사용
+                  // 자식 컴포넌트 내부에서 부모에게 'show-log'라는 사용자 정의 이벤트를 발생시킴
+                  // 부모에서 @show-log="printText" 로 감지해서 printText() 메서드를 실행함
+              }
+          }
+        });
+
+        app3.mount("#app3"); 
+      });
+    </script>
+  </head>
+
+  <body>
+    <h1>이벤트의 이해</h1> 
+
+    <div id="app"> <!-- 첫번째 컴포넌트 -->
+      주사위 수 : {{ number1 }} <!-- number1 값을 화면에 출력 -->
+      <button v-on:click="rollDiceEvent">주사위 던지기1</button> <!-- 첫 번째 버튼 클릭 시 rollDiceEvent 메서드 실행 -->
+      <br />
+
+      주사위 수 + 10 : {{ number2 }} <!-- number2 값을 화면에 출력 -->
+      <button @click="rollDiceEvent2(10)">주사위 던지기2</button> <!-- 두 번째 버튼 클릭 시 10을 인자로 전달 -->
+      <hr/>
+      숫자 증가 : {{ count }} <!-- 현재 count 값 출력 -->
+      <br/>
+      숫자 증가 : {{ count * 2 }} <!-- count 값의 2배 출력 -->
+      <br/>
+      숫자 js 조건문 : {{ count % 2 == 0 ? "짝수" : "홀수" }} <!-- count가 짝수인지 홀수인지 표시 -->
+      <br/>
+      <button @click="count += 1">클릭으로 숫자 증가1</button> <!-- 클릭하면 count를 1 증가시킴 -->
+      <button @click="count ++">클릭으로 숫자 증가2</button> <!-- 동일하게 count를 1 증가 -->
+    </div>
+
+    <hr/>
+
+    <div id="app2"> <!-- 두번째 컴포넌트 -->
+        message : <child-component :propsdate="message"></child-component> <!-- 부모 message를 propsdate로 전달 -->
+    </div>
+
+    <hr/>
+
+    <div id="app3"> <!-- 세번째 컴포넌트 -->
+      <!-- 자식 컴포넌트에서 이벤트를 발생 시키고, 부모 컴포넌트에서 감지하여 메소드를 호출 -->
+        message : <child-component @show-log="printText"></child-component> 
+        <h2>{{msg}}</h2> <!-- 자식으로부터 전달받은 이벤트 결과 메시지를 출력 -->
+    </div>
+
+  </body>
+</html>

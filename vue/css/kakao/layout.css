@@ -1,0 +1,30 @@
+/* 전체 페이지 중앙 정렬용 */
+.container {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 30px;
+  background-color: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+/* 섹션 구분용 여백 */
+.section {
+  margin-bottom: 24px;
+}
+
+/* 섹션 제목 */
+.section-title {
+  font-size: 18px;
+  font-weight: bold;
+  color: #444;
+  margin-bottom: 12px;
+}
+
+/* 반응형 대응 */
+@media (max-width: 768px) {
+  .container {
+    margin: 20px;
+    padding: 20px;
+  }
+}

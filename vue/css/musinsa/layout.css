@@ -1,0 +1,13 @@
+.container {
+  display: grid;                               /* CSS 그리드로 구성 */
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));  /* 반응형 카드 1~n열 자동 */
+  gap: 20px;                                   /* 카드 사이 여백 */
+  padding: 40px;                               /* 전체 여백 */
+}
+
+.header {
+  text-align: center;                          /* 가운데 정렬 */
+  font-size: 28px;                             /* 큰 제목 */
+  font-weight: bold;                           /* 굵은 글씨 */
+  margin-bottom: 30px;                         /* 아래 여백 */
+}

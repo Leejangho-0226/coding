@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="jikwon">
+
+  <select id="getList" resultType="jikDto">
+    SELECT * FROM jikwon
+  </select>
+
+  <select id="getByNo" parameterType="int" resultType="jikDto">
+    SELECT * FROM jikwon WHERE jikwonno = #{no}
+  </select>
+
+  <update id="updateJik">
+    UPDATE jikwon SET jik = #{jik} WHERE jikwonno = #{jikwonno}
+  </update>
+
+  <select id="getByGender" resultType="jikDto">
+    SELECT * FROM jikwon ORDER BY jikwonsex
+  </select>
+
+  <select id="getGenderAvg" resultType="map">
+    SELECT jikwonsex AS gender, AVG(jikwonpay) AS avg FROM jikwon GROUP BY jikwonsex
+  </select>
+
+</mapper>

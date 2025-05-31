@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    
+    
+</head>
+<body>
+    <div id="app">
+        {{key1}} {{key2}}
+        <br/>
+        <b>{{message}}</b>
+        <br>
+        <input type="text" v-model="message" />
+        <div v-html="htmlString"></div> <!-- raw(고유) HTML을 랜더링 -->
+        <div>{{htmlString}}</div> <!-- 일반 텍스트로 랜더링 -->
+        
+        <br/>
+        <button v-on:click="myFunc">클릭</button>
+        <br/>
+        <button @click="myChange1">변경 1(message)</button>
+        <button @click="myChange2">변경 2(message)</button>
+
+        <br/>
+
+        <!-- 계산된 프로퍼티를 표시 -->
+        <input type="text" size="5" v-model.number="su1"> + 
+        <input type="text" size="5" v-model.number="su2"> = <span>{{su1 + su2}}</span>
+
+        <!-- 조건부 랜더링을 사용해 버튼의 활성화/비활성화 제어 -->
+         <br/>
+        <input type="search" v-model="txtMsg" placeholder="문자입력"/>
+        <button :disabled="txtMsg === ''">활성화 대기 OR 실행</button>
+        <br/><br/>
+        <!-- 이미지 url을 바인딩하여 동적으로 이미지 로딩 -->
+         <img v-bind:src="daumLogo" style="width:100px;height: auto;"/>
+    </div>
+    <hr size="5px" color="blue"/>
+    
+    <!-- 두번째 컴포넌트 -->
+    <div id="app2">
+        부서 배열 자료 출력(for)<br>
+        <select>
+            <option :value="buser.bunho" :key="buser.bunho" v-for="buser in busers">
+                {{buser.bunho}} {{buser.irum}} {{buser.junhwa}}
+            </option>
+        </select>
+        <br/><br/>
+        <table border="1">
+            <thead>
+                <tr><th>부서번호</th><th>부서명</th><th>전화</th></tr>
+            </thead>
+            <tbody>
+                <tr v-for="buser in busers" :key="buser.bunho">
+                    <td>{{buser.bunho}}</td>
+                    <td>{{buser.irum}}</td>
+                    <td>{{buser.junhwa}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <br/><br/>
+        <!-- 조건부 랜더링을 사용해 연봉에 따른 메세지를 표시 -->
+        <div>
+            연봉 얼마냐? <input type="number" v-model="ypay" />
+        </div>
+        <div>
+            <span v-if="ypay < 5000">힘 내자</span>
+            <span v-else-if="ypay < 9900">잘 살아보셈ㅋㅋ</span>
+            <span v-else>개부럽네</span>
+        </div>
+        <br/>
+        <!-- css 스타일 데이터와 바인딩 -->
+         <span v-bind:style="cssStyleTest">컨텐츠 스타일을 적용</span>
+         <button @click="cssStyleTest.fontSize='30px'">글자 크기 확대</button>
+    </div>
+
+    <!-- 각 Vue 객체를 각각의 JS로 작성 후 호출 -->
+     <script src="../js/ex9js1.js"></script>
+     <script src="../js/ex9js2.js"></script>
+</body>
+</html>

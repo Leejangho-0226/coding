@@ -1,0 +1,47 @@
+@charset "UTF-8";
+
+/* ✅ 전체 배경 및 정중앙 정렬 */
+body {
+  font-family: 'Noto Sans KR', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f2f6fc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; /* 화면 전체 높이 */
+}
+
+/* ✅ 메인 박스 (하늘색 그라데이션 + 가운데 정렬) */
+.container {
+  width: 90%;
+  max-width: 800px;
+  background: linear-gradient(to bottom right, #d8ecff, #a4c8f0); /* 파란 그라데이션 */
+  padding: 60px 40px;
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+/* ✅ 제목 스타일 */
+h2 {
+  color: #2c3e50;
+  font-size: 28px;
+  margin-bottom: 30px;
+  font-weight: bold;
+}
+
+/* ✅ 링크들 정리 */
+a {
+  display: inline-block;
+  margin: 8px;
+  font-size: 16px;
+  text-decoration: none;
+  color: #1c4da0; /* 진한 파란색 */
+  font-weight: bold;
+}
+
+a:hover {
+  color: #103b82;
+  text-decoration: underline;
+}

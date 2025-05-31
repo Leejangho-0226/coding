@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vue Router 실습</title>
+  <script src="https://unpkg.com/vue@3"></script>
+  <script src="https://unpkg.com/vue-router@4"></script>
+</head>
+<body>
+  <p> 라우팅 : vue에서 라우팅은 웹에서 사용자가 URL 변경을 했을 때 요청에 맞는 컴포넌트(view)를 보여주는 기능</p>
+  <hr/>
+  <div id="app">
+    <!-- 네비게이션 링크 -->
+    <router-link to="/">메인</router-link> |
+    <router-link to="/about">소개</router-link> |
+    <router-link to="/mem">메뉴1-회원</router-link> |
+    <router-link to="/product">메뉴2-상품</router-link> |
+    <router-link to="/gugudan">구구단</router-link>
+
+    <!-- 경로에 따라 컴포넌트가 바뀌는 영역 -->
+    <router-view style="color:red;"></router-view>
+  </div>
+
+  <!-- ✅ 외부 JS 파일에서 컴포넌트를 불러오기 위해 type="module" 반드시 필요 -->
+  <script defer type="module">
+    // 컴포넌트 정의
+    const Home = {
+      template: `
+        <div>
+          <h1>🏠 메인 페이지입니다</h1>
+          <p>🎉방문을 환영합니다🎉</p>
+        </div>
+      `
+    };
+
+    // 소개 컴포넌트
+    const About = {
+      template: `
+        <div>
+          <h1>ℹ️ 소개 페이지입니다</h1>
+          <p>Vue Router를 이용한 페이지입니다.</p>
+        </div>
+      `
+    };
+
+    // 메뉴1 컴포넌트
+    const Member = {
+      template: `
+        <div>
+          <h1>회원 관리</h1>
+          <p>회원님 잘 지내시죠?</p>
+        </div>
+      `
+    };
+
+    // 메뉴2 컴포넌트
+    /*
+    const Product = {
+      template: `
+        <div>
+          <h1>상품 관리</h1>
+          <p>물품 아껴 쓰기</p>
+        </div>
+      `
+    };
+    */
+
+    // 라우터 경로 설정
+    // ✅ 모듈 방식으로 외부 JS 파일에서 컴포넌트를 불러옴
+    // - import 사용 시 script에 반드시 type="module" 지정
+    // - Productcomp.js에서는 반드시 export default로 컴포넌트를 내보내야 함
+    // - 상대 경로 주의: 현재 HTML 기준으로 경로 작성해야 함
+    import Product from '../js/Productcomp.js';
+    import Gugudan from '../js/Gugucomp.js';
+
+    // router 배열 : URL 경로(path)와 경로에 매핑되는 컴포넌트 정의
+    const routes = [
+      { path: '/', component: Home },
+      { path: '/about', component: About },
+      { path: '/mem', component: Member },
+      { path: '/product', component: Product }, 
+      { path: '/gugudan', component: Gugudan }  // 외부 모듈로 불러온 컴포넌트 연결
+    ];
+
+    //  라우터 생성
+    // - createWebHistory()  → 히스토리 모드 (URL에 # 없음, 배포용, 서버 설정 필요)
+    // - createWebHashHistory() → 해시 모드 (URL에 # 포함됨, 테스트/개발용에 적합)
+    const router = VueRouter.createRouter({
+      // history: VueRouter.createWebHistory(),  // 🔹 URL에 # 없음 (예: /about) - 실배포용
+      history: VueRouter.createWebHashHistory(), // 🔹 URL에 # 포함됨 (예: /#/about) - 개발/테스트용
+      routes
+    });
+
+    // Vue 앱 생성 및 라우터 등록
+    // Vue app 초기화
+    const app = Vue.createApp({});
+    app.use(router);  // Vue 어플리케이션에 라우터를 등록
+    app.mount('#app');
+  </script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+function updateMember(){
+	const num = document.querySelector("input[name='num']").value;
+	const name = document.querySelector("input[name='name']").value;
+	const addr = document.querySelector("input[name='addr']").value;
+	
+	fetch(`/api/members`,{
+		method:"PUT",
+		headers:{
+			'Content-Type' : 'application/json'
+		},
+		body: JSON.stringify({num: num, name: name, addr: addr}) // json을 string으로 변환
+	})
+	.then(response => {
+		if(!response.ok) throw new Error('회원 수정 실패');
+		return response.json(); // string을 json으로 변환
+	})
+	.then(data => {
+		if(data.isSuccess){ //return Map.of("isSuccess", true); //{"isSuccess" : true} 형태로 직렬화
+			alert('회원정보 수정 완료🪄🪄🪄🪄🪄')
+			location.href='/members/list'; // 수정 후 목록보기로 이동
+		}
+	})
+	.catch(error => {
+		console.log('error : ', error);
+	});
+}
+</script>
+</head>
+<body>
+<h2>* 자료 수정 *</h2>
+<form onsubmit="event.preventDefault(); updateMember()">
+<input type="hidden" name="num" th:value="${data.num}">
+번호 : [[${data.num}]]<br>
+이름 : <input type="text" name="name" th:value="${data.name}"><br>
+주소 : <input type="text" name="addr" th:value="${data.addr}"><br>
+<input type="submit" value="수정">
+</form>
+</body>
+</html>

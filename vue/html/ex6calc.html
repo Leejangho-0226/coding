@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Document</title>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script> 
+</head>
+<body>
+  <div id="app">
+    <h2>이벤트 연습용 계산기</h2>
+    
+    <div>
+      <label for="value1">값1</label>
+      <input type="number" id="value1" v-model.number="value1" />
+    </div>
+    <div>
+      <label for="value2">값2</label>
+      <input type="number" id="value2" v-model.number="value2" />
+    </div>
+    
+    <div>
+      <button @click="calcFunc('+')"> + </button>&nbsp;&nbsp;
+      <button @click="calcFunc('-')"> - </button>&nbsp;&nbsp;
+      <button @click="calcFunc('*')"> * </button>&nbsp;&nbsp;
+      <button @click="calcFunc('/')"> / </button>&nbsp;&nbsp;
+    </div>
+    
+    <div>
+      <h3>결과는 {{ result }}</h3>
+    </div>
+  </div>
+
+  <script defer>
+    const { createApp, ref } = Vue;
+
+    createApp({
+      setup() {  // methods로 해도 가능하다
+        const value1 = ref(0); // 첫 번째 입력값 , 반응형 
+        const value2 = ref(0); // 두 번째 입력값
+        const result = ref(0); // 계산 결과
+
+        // 계산 함수
+        const calcFunc = (op) => {
+          switch (op) {
+            case '+':
+              result.value = value1.value + value2.value;
+              break;
+            case '-':
+              result.value = value1.value - value2.value;
+              break;
+            case '*':
+              result.value = value1.value * value2.value;
+              break;
+            case '/':
+              result.value = value2.value !== 0
+                ? (value1.value / value2.value).toFixed(2) // 숫자를 소수점 아래 몇 자리까지 표시할지 정해주는 함수
+                : '오류 : 0으로 나눌 수 없는데 ㅋㅋ';
+              break;
+          }
+        };
+
+        // 외부에서 쓸 수 있게 리턴
+        return {
+          value1,
+          value2,
+          result,
+          calcFunc
+        };
+      }
+    }).mount("#app");
+  </script>
+</body>
+</html>

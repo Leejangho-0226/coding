@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://unpkg.com/vue@3"></script>
+</head>
+<body>
+  <div id="app">
+    <button @click="fetchData">Ajax 실행</button>
+    <button @click="clearData">결과 삭제</button>
+    
+    <br/>
+    <div v-for="post in posts" :key="post.id"> 
+      <h3>{{ post.title }}</h3>
+      User ID : {{ post.userId }}<br>
+      {{ post.body }}
+    </div>
+  </div>
+
+  <script>
+    const { createApp } = Vue;
+
+    createApp({
+      data() {
+        return {
+          posts: [], // 게시글들을 담을 배열
+        };
+      },
+      methods: {
+        fetchData() {
+          fetch("https://jsonplaceholder.typicode.com/posts") //  전체 게시글 요청 (100개)
+            .then(response => {
+              if (!response.ok) {
+                throw new Error('네트워크 오류');
+              }
+              return response.json();
+            })
+            .then(json => {
+              this.posts = json.slice(0, 10); //  너무 많으니 10개만 자르기 (선택)
+            })
+            .catch(error => {
+              console.log('읽기 오류');
+            });
+        },
+        clearData() {
+          this.posts = []; // 데이터 초기화
+        },
+      },
+    }).mount("#app");
+  </script>
+</body>
+</html>

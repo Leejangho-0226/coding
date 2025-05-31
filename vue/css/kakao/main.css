@@ -1,0 +1,42 @@
+/* 📦 로그인 영역 강조 박스 */
+.login-box {
+  background-color: #fffbe7;               /* 연한 노랑 배경 */
+  border: 2px solid #FEE500;               /* 카카오 노랑 테두리 */
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 24px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+/* 📋 직원 정보 카드 스타일 (테이블 안 쓰고 싶을 때) */
+.employee-card {
+  background-color: white;            /* ✅ 연노랑 배경으로 변경 (카카오 느낌 확실) */
+  border: 2px solid #FEE500;            /* ✅ 테두리도 노란색 강조 */
+  border-radius: 10px;
+  padding: 16px;
+  margin-bottom: 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+  transition: transform 0.2s;
+}
+
+.employee-card:hover {
+  transform: scale(1.01);                  /* 살짝 커지는 효과 */
+}
+
+/* 🔍 조회 결과 구역 강조 */
+.result-section {
+  background-color: #f8f8f8;
+  border-left: 4px solid #FEE500;
+  padding: 20px;
+  margin-top: 20px;
+  border-radius: 8px;
+}
+
+/* ✅ 강조 텍스트 */
+.highlight {
+  background-color: #fff3cd;
+  color: #333;
+  font-weight: bold;
+  padding: 2px 6px;
+  border-radius: 4px;
+}

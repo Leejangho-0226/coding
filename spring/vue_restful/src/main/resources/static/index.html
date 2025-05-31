@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>장호의 쇼핑몰</title>
+
+  <!-- ✅ 폰트 & 라이브러리 -->
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet" />
+  <script src="https://unpkg.com/vue@3"></script>
+  <script src="https://unpkg.com/vue-router@4"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Noto Sans KR', sans-serif;
+      background-color: #1a1a1a;
+      color: #f5f5f5;
+    }
+    .logo-link {
+      color: white;
+      text-decoration: none;
+      font-size: 2.5rem;
+      font-weight: bold;
+      letter-spacing: 2px;
+    }
+    .logo-link:hover {
+      color: #c0a16b;
+    }
+    header {
+      background-color: #000;
+      padding: 20px;
+      text-align: center;
+    }
+    nav {
+      display: flex;
+      justify-content: center;
+      background-color: #111;
+      padding: 10px 0;
+    }
+    nav .nav-link {
+      color: #f5f5f5;
+      text-decoration: none;
+      margin: 0 15px;
+      font-size: 1.1rem;
+      position: relative;
+    }
+    nav .nav-link::after {
+      content: '';
+      display: block;
+      width: 0;
+      height: 2px;
+      background: #c0a16b;
+      transition: width .3s;
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+    }
+    nav .nav-link:hover::after {
+      width: 100%;
+    }
+    footer {
+      background-color: #000;
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9rem;
+      color: #777;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <!-- ✅ 상단 헤더 -->
+    <header>
+      <router-link to="/" class="logo-link">장호의 쇼핑몰</router-link>
+    </header>
+
+    <!-- ✅ 네비게이션 메뉴 -->
+    <nav>
+      <router-link to="/products" class="nav-link">제품 목록</router-link>
+      <router-link to="/add" class="nav-link">➕ 제품 추가</router-link> <!-- 신규 추가 -->
+      <router-link to="/events" class="nav-link">이벤트</router-link>
+      <router-link to="/about" class="nav-link">소개</router-link>
+      <router-link to="/contact" class="nav-link">문의</router-link>
+    </nav>
+
+    <!-- ✅ 페이지 출력 -->
+    <router-view></router-view>
+
+    <footer>
+      © 2025 장호의 쇼핑몰. All rights reserved.
+    </footer>
+  </div>
+
+  <!-- ✅ Vue 앱 구성 -->
+  <script type="module">
+    // 컴포넌트 불러오기
+    import ViewProduct from './component/ViewProduct.js';
+    import EditProduct from './component/EditProduct.js';
+    import AddProduct from './component/AddProduct.js'; // ✅ 추가폼 전용 컴포넌트
+
+    // ✅ 메인 홈 화면 구성
+    const Home = {
+      template: `
+        <div>
+          <div style="background: url('https://source.unsplash.com/1600x500/?shopping,mall') no-repeat center center / cover; height: 400px; position: relative;">
+            <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: white; text-align: center; text-shadow: 1px 1px 5px #000;">
+              <h2 style="font-size: 3rem;">Welcome to 장호's Mall</h2>
+              <p style="font-size: 1.2rem;">프리미엄 쇼핑 경험을 지금 만나보세요 🛒</p>
+            </div>
+          </div>
+
+          <section style="padding: 60px; text-align: center;">
+            <h3 style="font-size: 1.8rem; margin-bottom: 20px; color: #f0c674;">📦 장호몰 소개</h3>
+            <p style="font-size: 1.1rem; color: #ccc;">
+              이 사이트는 대한민국 최고의 장호 쇼핑몰입니다.<br/>
+              세상의 모든 것, 없는 게 없는 이곳에서 마음껏 쇼핑하세요!
+            </p>
+            <div style="margin-top: 40px;">
+              <img src="https://source.unsplash.com/800x300/?shopping,ecommerce" style="max-width: 90%; border-radius: 12px;">
+            </div>
+          </section>
+        </div>
+      `
+    };
+
+    const Events = { template: '<div style="padding:50px; text-align:center;">🎉 이벤트 페이지</div>' };
+    const About = { template: '<div style="padding:50px; text-align:center;">🏬 쇼핑몰 소개</div>' };
+    const Contact = { template: '<div style="padding:50px; text-align:center;">📞 문의하기</div>' };
+
+    // ✅ 라우터 정의
+    const routes = [
+      { path: '/', component: Home },
+      { path: '/products', component: ViewProduct },
+      { path: '/add', component: AddProduct },           // ✅ 등록 페이지 라우팅 추가
+      { path: '/edit/:code', component: EditProduct },   // ✅ 수정 페이지 라우팅
+      { path: '/events', component: Events },
+      { path: '/about', component: About },
+      { path: '/contact', component: Contact },
+    ];
+
+    const router = VueRouter.createRouter({
+      history: VueRouter.createWebHashHistory(),
+      routes,
+    });
+
+    const app = Vue.createApp({});
+    app.use(router);
+    app.mount('#app');
+  </script>
+</body>
+</html>

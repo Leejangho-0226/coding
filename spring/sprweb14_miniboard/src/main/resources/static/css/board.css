@@ -1,0 +1,70 @@
+@charset "UTF-8";
+
+@import url('https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&display=swap');
+
+body {
+  background-color: #2e7d32;
+  color: white;
+  font-family: 'Gloria Hallelujah', cursive;
+  background-image: url('/images/chalk-dust.png'); /* 없어도 됨 */
+  background-size: cover;
+  background-position: center;
+  margin: 0;
+  padding: 0;
+}
+
+.chalk-text {
+  text-shadow:
+    1px 1px 0 #fff,
+    -1px -1px 0 #fff,
+    -1px 1px 0 #fff,
+    1px -1px 0 #fff;
+  filter: blur(0.3px);
+}
+
+@keyframes wobble {
+  0% { transform: rotate(0deg); }
+  25% { transform: rotate(-1deg); }
+  50% { transform: rotate(1deg); }
+  75% { transform: rotate(-1deg); }
+  100% { transform: rotate(0deg); }
+}
+
+.animate-wobble {
+  animation: wobble 2s infinite;
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px dashed white;
+  color: white;
+  font-family: 'Gloria Hallelujah', cursive;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: rotate(-1deg) scale(1.01);
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
+}
+
+.btn-outline-primary {
+  border: 2px dashed white;
+  color: white;
+  font-weight: bold;
+  background-color: transparent;
+}
+
+.btn-outline-primary:hover {
+  background-color: white;
+  color: #2e7d32;
+}
+
+a {
+  color: white;
+  text-decoration: underline dashed;
+}
+
+a:hover {
+  color: #c8f8d2;
+}

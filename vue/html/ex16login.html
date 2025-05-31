@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>직원 정보 시스템</title>
+
+    <!--  외부 CSS 파일 연결 -->
+    <link rel="stylesheet" href="../css/kakao/style.css" />
+    <link rel="stylesheet" href="../css/kakao/layout.css" />
+    <link rel="stylesheet" href="../css/kakao/main.css" />
+
+    <script src="https://unpkg.com/vue@3"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <div id="app" class="container">
+      <!-- 🔐 로그인 영역 -->
+      <div class="section login-box">
+        <div class="section-title">로그인</div>
+        사번: <input type="text" v-model="jikwonno" /><br />
+        이름: <input type="text" v-model="jikwonname" /><br />
+        <button @click="login">로그인</button>
+        <button @click="logout" v-if="loginSuccess">로그아웃</button>
+      </div>
+
+      <!-- 🔽 조건 선택 영역 -->
+      <div class="section" v-if="loginSuccess">
+        <div class="section-title">조회 조건</div>
+        부서명:
+        <select v-model="selectedDept">
+          <option disabled value="">부서를 선택하세요</option>
+          <option v-for="dept in deptList" :key="dept">{{ dept }}</option>
+        </select>
+
+        <br /><br />
+        연봉 정렬:
+        <label
+          ><input type="radio" value="asc" v-model="sortOrder" />
+          오름차순</label
+        >
+        <label
+          ><input type="radio" value="desc" v-model="sortOrder" />
+          내림차순</label
+        >
+
+        <br /><br />
+        <button @click="loadEmployees" :disabled="selectedDept === ''">
+          직원 조회
+        </button>
+      </div>
+
+      <!-- 📋 직원 정보 카드형 출력 -->
+      <div class="section result-section" v-if="employees.length > 0">
+        <div class="section-title">직원 정보</div>
+
+        <!-- ✅ 카드 반복 -->
+        <div v-for="emp in employees" :key="emp.jikwonno" class="employee-card">
+          <p><strong>사번:</strong> {{ emp.jikwonno }}</p>
+          <p><strong>이름:</strong> {{ emp.jikwonname }}</p>
+          <p><strong>직급:</strong> {{ emp.jikwonjik }}</p>
+          <p><strong>연봉:</strong><span :class="{ highlight: emp.jikwonpay >= 5000 }">{{ emp.jikwonpay }}</span>만원</p>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const { createApp } = Vue;
+      createApp({
+        data() {
+          return {
+            jikwonno: "",
+            jikwonname: "",
+            loginSuccess: false,
+            selectedDept: "",
+            sortOrder: "asc",
+            deptList: ["총무부", "영업부", "전산부", "관리부", "김지구"],
+            employees: [],
+          };
+        },
+        methods: {
+          login() {
+            if (!this.jikwonno || !this.jikwonname) {
+              alert("사번과 이름을 모두 입력해주세요.");
+              return;
+            }
+
+            const params = new URLSearchParams();
+            params.append("jikwonno", this.jikwonno);
+            params.append("jikwonname", this.jikwonname);
+
+            axios
+              .post("http://127.0.0.1:8080/React_Test1/loginajax.jsp", params)
+              .then((res) => {
+                this.loginSuccess = res.data.success;
+                if (!this.loginSuccess) {
+                  alert("로그인 실패: 정보가 일치하지 않습니다.");
+                }
+              })
+              .catch((err) => console.error("로그인 오류:", err));
+          },
+          logout() {
+            this.jikwonno = "";
+            this.jikwonname = "";
+            this.loginSuccess = false;
+            this.selectedDept = "";
+            this.sortOrder = "asc";
+            this.employees = [];
+          },
+          loadEmployees() {
+            const params = new URLSearchParams();
+            params.append("dept", this.selectedDept);
+            params.append("sort", this.sortOrder);
+
+            axios
+              .post("http://127.0.0.1:8080/React_Test1/jikwonajax.jsp", params)
+              .then((res) => {
+                this.employees = res.data;
+              })
+              .catch((err) => console.error("직원 조회 오류:", err));
+          },
+        },
+      }).mount("#app");
+    </script>
+  </body>
+</html>

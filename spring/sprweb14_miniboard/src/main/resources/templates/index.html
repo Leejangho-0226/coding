@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>미니 게시판</title>
+  <link rel="stylesheet" href="/css/board.css">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+  <div class="index-wrap">
+
+    <div class="index-title">🎉감성 게시판</div>
+
+    <div class="index-subtitle">
+      🪄 하루의 기록을 남겨보세요.<br>
+      ✏️ 소중한 생각을 글로 담는 공간입니다.
+    </div>
+
+    <div th:each="post : ${latest}" class="latest-post">
+      <h2 th:text="${post.title}">제목</h2>
+      <p>
+        👤 <span th:text="${post.author}">작성자</span> |
+        👁 <span th:text="${post.readcnt}">0</span>회 조회
+      </p>
+      <a th:href="@{/detail(num=${post.num})}">🔍 자세히 보기</a>
+    </div>
+
+    <a href="/list" class="home-btn">📋 전체 게시글 보기</a>
+
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>검색 결과</title>
+</head>
+<body>
+    <h2>검색 결과</h2>
+
+    <!-- 결과 있을 때 -->
+    <div th:if="${datas != null}">
+        <table border="1">
+            <tr>
+                <th>사번</th><th>직원명</th><th>성별</th><th>연봉</th>
+            </tr>
+            <tr th:each="row : ${datas}">
+                <td th:text="${row.jikwonno}"></td>
+                <td th:text="${row.jikwonname}"></td>
+                <td th:text="${row.jikwongen}"></td>
+                <td th:text="${row.jikwonpay}"></td>
+            </tr>
+        </table>
+        <p>총 인원수: <span th:text="${cnt}"></span>명</p>
+    </div>
+
+    <!-- 결과 없을 때 -->
+    <div th:if="${datas == null}">
+        <p>해당 직급의 직원이 없습니다.</p>
+    </div>
+</body>
+</html>

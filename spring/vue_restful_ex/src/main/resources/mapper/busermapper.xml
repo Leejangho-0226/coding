@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="pack.mybatis.DeptMapper">
+
+  <!-- 부서 전체 조회 -->
+  <select id="getAllBuser" resultType="buser">
+    SELECT * FROM buser
+  </select>
+
+  <!-- 부서번호로 조회 -->
+  <select id="getBuserById" parameterType="int" resultType="buser">
+    SELECT * FROM buser WHERE buserno = #{buserno}
+  </select>
+
+  <!-- 부서 등록 -->
+  <insert id="insertBuser" parameterType="buser">
+    INSERT INTO buser (busername, buserloc, busertel)
+    VALUES (#{busername}, #{buserloc}, #{busertel})
+  </insert>
+
+  <!-- 부서 수정 -->
+  <update id="updateBuser" parameterType="buser">
+    UPDATE buser
+    SET busername = #{busername},
+        buserloc = #{buserloc},
+        busertel = #{busertel}
+    WHERE buserno = #{buserno}
+  </update>
+
+  <!-- 부서 삭제 -->
+  <delete id="deleteBuser" parameterType="int">
+    DELETE FROM buser WHERE buserno = #{buserno}
+  </delete>
+
+  <!-- 특정 부서의 직원 목록 -->
+  <select id="getJikwonByBuser" parameterType="int" resultType="jikwon">
+    SELECT * FROM jikwon
+    WHERE busernum = #{buserno}
+    ORDER BY jikwonno ASC
+  </select>
+
+  <!-- ✅ 전체 직원 + 부서명 조회 (그룹화용) -->
+  <select id="getAllJikwonWithBuser" resultType="jikwon">
+    SELECT 
+      jikwonno, jikwonname, jikwonjik, busernum, busername
+    FROM jikwon
+    JOIN buser ON jikwon.busernum = buser.buserno
+    ORDER BY busername ASC, jikwonno ASC
+  </select>
+
+</mapper>

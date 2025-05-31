@@ -1,0 +1,122 @@
+@charset "UTF-8";
+
+/* 배경 이미지 설정 */
+body {
+    background-image: url("/images/newjeans.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+    padding: 0;
+    color: white;
+}
+
+/* 전체 콘텐츠 여백 */
+.wrapper {
+    padding-left: 5%;
+    padding-right: 5%;
+    position: relative;
+    z-index: 1;
+}
+
+/* 제목 스타일 */
+h1, h2, h3 {
+    color: white;
+    text-align: center;
+    margin-top: 50px;
+    text-shadow: 1px 1px 5px black;
+}
+
+/* 버튼 공통 설정 */
+.btn-nj {
+    font-weight: bold;
+    font-size: 1.1rem;
+    padding: 10px 18px;
+    margin: 10px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 6px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-nj-pink {
+    background-color: #ff69b4;
+    color: white;
+    border: none;
+}
+.btn-nj-pink:hover {
+    background-color: #ff8ac7;
+}
+
+.btn-nj-blue {
+    background-color: #00bfff;
+    color: white;
+    border: none;
+}
+.btn-nj-blue:hover {
+    background-color: #33ccff;
+}
+
+.btn-nj-mint {
+    background-color: #66ffc2;
+    color: black;
+    border: none;
+}
+.btn-nj-mint:hover {
+    background-color: #99ffd9;
+}
+
+.btn-nj-white {
+    background-color: white;
+    color: black;
+    border: 1px solid #ccc;
+}
+.btn-nj-white:hover {
+    background-color: #f2f2f2;
+    color: black;
+}
+
+/* 메뉴 링크 스타일 */
+.menu-box a {
+    color: white;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 10px 16px;
+    margin: 0 10px;
+    border-radius: 8px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-decoration: none;
+    text-shadow: 1px 1px 3px black;
+    transition: background-color 0.3s, color 0.3s;
+}
+.menu-box a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #00bfff;
+}
+
+/* 모달 내부 보이게 조정 */
+.modal-content {
+    background-color: #fff;
+    color: #000;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    z-index: 1050;
+}
+
+/* 모달 닫기 버튼 보이게 */
+.btn-close {
+    filter: brightness(0) invert(1);
+}
+
+/* 일반 링크 스타일 */
+a {
+    color: white;
+    text-shadow: 1px 1px 3px black;
+    text-decoration: none;
+}
+a:hover {
+    color: #00bfff;
+}

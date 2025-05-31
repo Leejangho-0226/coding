@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+     <script src="https://unpkg.com/vue@3"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <button @click="showFunc">Ajax로 직원 읽기</button>
+
+        <table v-if="jikwons && jikwons.length > 0">
+            <tr>
+                <th>사번</th><th>이름</th><th>직급</th>
+            </tr>
+            <template v-for="jikwon in jikwons">
+                <tr>
+                    <td>{{jikwon.jikwonno}}</td>
+                    <td>{{jikwon.jikwonname}}</td>
+                    <td>{{jikwon.jikwonjik}}</td>
+                </tr>
+            </template>
+        </table>
+    </div>
+
+    <script defer>
+        const {createApp} = Vue;
+
+        createApp({
+            data() {
+                return {
+                    jikwons:[],
+                }
+            },
+            methods:{
+                showFunc(){
+                    axios.get("http://127.0.0.1:8080/React_Test1/jikwon.jsp")
+                    .then(response => {
+                        this.jikwons = response.data;
+                    })
+                    .catch(error => {
+                        console.log("에러 : ", error)
+                    })
+                }
+            }
+        }).mount("#app");
+
+    </script>
+</body>
+</html>

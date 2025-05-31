@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>도서관 & 날씨 정보</title>
+
+  <!-- Vue & Router CDN -->
+  <script src="https://unpkg.com/vue@3"></script>
+  <script src="https://unpkg.com/vue-router@4"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios@1.6.7/dist/axios.min.js"></script>
+
+  <!-- CSS 연결 -->
+  <link rel="stylesheet" href="./ex14js/css/style.css" />
+  <link rel="stylesheet" href="./ex14js/css/layout.css" />
+  <link rel="stylesheet" href="./ex14js/css/main.css" />
+</head>
+<body>
+  <div id="app">
+    <!-- ✅ 상단 고정 제목 -->
+    <div class="main-header">
+      <h1>정보</h1>
+    </div>
+
+    <!-- ✅ 고정된 네비게이션 메뉴 -->
+    <div class="nav-bar">
+      <router-link to="/">메인</router-link> |
+      <router-link to="/library">도서관정보</router-link> |
+      <router-link to="/weather">날씨정보</router-link>
+    </div>
+
+    <!-- ✅ 바뀌는 화면 영역 -->
+    <router-view></router-view>
+  </div>
+
+  <script type="module" src="./ex14js/main.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+.card {
+  background-color: #000000;                   /* 카드 배경은 검정색 */
+  color: #ffffff;                              /* 글자는 흰색 */
+  border-radius: 12px;                         /* 카드 모서리 둥글게 */
+  padding: 20px;                               /* 안쪽 여백 */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);  /* 부드러운 그림자 효과 */
+  transition: transform 0.3s ease;             /* 애니메이션 효과 */
+}
+
+.card:hover {
+  transform: translateY(-5px);                 /* 마우스 올리면 카드가 살짝 위로 */
+}
+
+.card-title {
+  font-size: 18px;                             /* 제목 크기 */
+  font-weight: 600;                            /* 중간 굵기 */
+  margin-bottom: 10px;                         /* 여백 */
+}
+
+.card-content {
+  font-size: 14px;                             /* 본문 내용 작게 */
+  line-height: 1.6;                            /* 줄간격 여유 있게 */
+}

@@ -1,0 +1,10 @@
+body {
+  font-family: '맑은 고딕', sans-serif;       /* 본문 폰트를 '맑은 고딕'으로 설정 */
+  background-color: #f7f7f7;                /* 전체 배경을 밝은 회색으로 설정 */
+  color: #1e3050;                           /* 기본 글자 색상을 네이비 계열로 설정 */
+}
+
+a {
+  color: #1e3050;                           /* 링크 색상도 네이비 계열로 통일 */
+  text-decoration: none;                   /* 링크 밑줄 제거 */
+}

@@ -1,0 +1,76 @@
+@charset "UTF-8";
+
+body {
+    margin: 0 auto;
+    max-width: 1200px;
+    padding: 20px;
+    font-size: 1.2em;
+    background-color: #121212;
+    color: #e0e0e0;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.7);
+}
+
+.modal-content {
+    background-color: #1e1e1e;
+    margin: 15% auto;
+    padding: 40px;
+    border: none;
+    width: 40%;
+    min-width: 500px;
+    border-radius: 16px;
+    box-shadow: 0 8px 12px rgba(0,0,0,0.8);
+}
+
+input[type="text"], 
+input[type="number"] {
+    background-color: #333;
+    color: #fff;
+    border: 2px solid #555;
+}
+
+table {
+    background-color: #1e1e1e;
+    color: #e0e0e0;
+    width: 80%;
+    margin: 40px auto;
+    border-collapse: separate;
+    border-spacing: 0 15px;
+}
+
+th, td {
+    border-bottom: 2px solid #333;
+}
+
+th {
+    background-color: #333;
+}
+
+button {
+    background-color: #333;
+    color: #fff;
+}
+
+button:hover {
+    transform: scale(1.05);
+    background-color: #444;
+    box-shadow: 0 4px 8px rgba(255,255,255,0.2);
+}
+
+.menu-buttons button {
+    background-color: #555;
+}
+
+input[type="checkbox"] {
+    width: 24px;
+    height: 24px;
+}

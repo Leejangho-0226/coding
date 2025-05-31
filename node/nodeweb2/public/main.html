@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>메인 페이지</title>
+  </head>
+  <body>
+    <h2>📋 메인 페이지</h2>
+
+    <ul>
+      <li><a href="/jikwon">직원 목록 보기</a></li>
+      <li><a href="/gogek">고객 목록 보기</a></li>
+      <li><a href="/jikwon/nice">직원 응원 메시지</a></li>
+      <li><a href="/jikwon/nice/장호">우수직원: 장호</a></li>
+    </ul>
+
+    <ul id="emp-list"></ul>
+
+    <br />
+    get: <button id="get-emp">직원보기(get)</button>
+    <br />
+    post:
+    <input type="text" id="emp-name" placeholder="이름입력" required />
+    <button id="add-emp">직원추가(post)</button>
+
+    <div id="emp-result"></div>
+
+    <script>
+      // DOM이 모두 로드된 후 실행
+      document.addEventListener("DOMContentLoaded", () => {
+        // 요소 가져오기
+        const empList = document.getElementById("emp-list");
+        const empNameInput = document.getElementById("emp-name");
+        const getEmpBtn = document.getElementById("get-emp");
+        const addEmpBtn = document.getElementById("add-emp");
+
+        // GET - 직원 리스트 보기
+        getEmpBtn.addEventListener("click", () => {
+          fetch("/jikwon/emps", { method: "GET" }) // 서버에 GET 요청
+            .then((response) => response.json())    // 응답을 JSON으로 파싱
+            .then((data) => {
+              empList.innerHTML = "";              // 기존 목록 초기화
+              data.forEach((emp) => {
+                const li = document.createElement("li");
+                li.textContent = emp.name;         // 각 직원 이름 출력
+                empList.appendChild(li);
+              });
+            })
+            .catch((error) => console.log("직원읽기 오류:", error)); // 네트워크 또는 서버 오류 처리
+        });
+
+        // POST - 직원 추가
+        addEmpBtn.addEventListener("click", () => {
+          const name = empNameInput.value.trim(); // 입력값 앞뒤 공백 제거
+
+          if (!name) {
+            alert("❗ 이름을 입력해주세요."); // 빈 문자열이면 경고창
+            return; // 서버에 요청 보내지 않음
+          }
+
+          // 새로운 직원 객체 생성 (id는 시간 기반으로 생성)
+          const newEmp = { id: Date.now(), name };
+
+          // 서버에 POST 요청 전송
+          fetch("/jikwon/emps", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json", // JSON 형식 전송
+            },
+            body: JSON.stringify(newEmp), // 객체를 문자열로 변환하여 전송
+          })
+            .then((response) => {
+              if (!response.ok) throw new Error("서버로부터 오류 응답");
+              return response.json(); // 응답 JSON 파싱
+            })
+            .then((emp) => {
+              const li = document.createElement("li");
+              li.textContent = emp.name;        // 등록된 직원 이름 표시
+              empList.appendChild(li);          // 목록에 추가
+              empNameInput.value = "";          // 입력창 초기화
+            })
+            .catch((error) => {
+              console.error("직원추가오류:", error); // 콘솔 출력
+              alert("❌ 직원 추가 중 오류가 발생했습니다."); // 사용자 알림
+            });
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,11 @@
+body {
+  font-family: 'Spoqa Han Sans Neo', sans-serif;  /* 토스 느낌의 둥글고 깔끔한 한글 폰트 */
+  background-color: #f2f4f6;                      /* 전체 배경을 밝은 회색 계열로 설정 */
+  color: #333;                                    /* 기본 글자 색상을 어두운 회색으로 설정 */
+  margin: 0;                                      /* 바깥 여백 제거 */
+  padding: 0;                                     /* 안쪽 여백 제거 */
+}
+a {
+  color: #3182f6;                                 /* 링크 색상은 토스 블루로 */
+  text-decoration: none;                          /* 링크 밑줄 제거 */
+}

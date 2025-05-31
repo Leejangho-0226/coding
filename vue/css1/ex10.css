@@ -1,0 +1,95 @@
+/* 전체 배경과 컨테이너 스타일 */
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 50px 0;
+  background-color: #f3f3f3;
+
+  /* ✅ 전체 중앙 정렬을 위한 flex 레이아웃 */
+  display: flex;
+  justify-content: center;
+}
+
+/* Vue 앱 컨테이너 스타일 */
+#app {
+  max-width: 600px;              /*  최대 너비 고정 */
+  width: 100%;
+  padding: 30px 40px;            
+  background-color: white;       
+  border-radius: 12px;           /*  둥근 모서리 */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /*  그림자 */
+}
+
+/* 제목 스타일 정렬 */
+h1, h3 {
+  text-align: center;
+  color: #333;
+}
+
+/*  입력 라인 하나를 수평 정렬 */
+.form-group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+/*  라벨 정렬 */
+.form-group label {
+  width: 70px;
+  margin-right: 10px;
+}
+
+/*  입력창 정렬 */
+.form-group input {
+  flex: 1;
+  padding: 6px;
+}
+
+/* 버튼을 오른쪽에 배치 */
+.form-actions {
+  text-align: right;
+  margin-top: 10px;
+}
+
+/* 버튼 스타일 */
+button {
+  padding: 8px 16px;
+  background-color: #1976d2;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #1565c0;
+}
+
+/* 결과 리스트 기본 스타일 */
+ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+li {
+  background-color: white;
+  padding: 10px;
+  margin-bottom: 6px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+}
+
+/* 총점 200 이상인 경우 강조 */
+.highlight {
+  background-color: black;
+  color: white;
+  font-weight: bold;
+}
+
+/* 전체 통계 스타일 */
+#totalInfo {
+  font-weight: bold;
+  margin-top: 10px;
+  text-align: center;
+  color: #444;
+}

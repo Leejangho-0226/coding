@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>📖도서 정보📖</title>
+    <script src="https://unpkg.com/vue@v3.1.1"></script>
+    <script src="../js/ex4.js" defer></script>
+  </head>
+  <body>
+    <div id="app">
+      <div>
+        <h2>📖도서 정보📖</h2>
+      </div>
+
+      <div v-for="(book, index) in bookList" :key="index">
+        <input
+          type="checkbox"
+          :id="'book' + index"
+          :value="book"
+          v-model="selectedBooks"
+        />
+        <label :for="'book' + index">
+          {{ book.name }}&nbsp;&nbsp; - 가격 : {{ book.price }}원
+        </label>
+      </div>
+
+      <hr />
+      <div>
+          <h3>✅ 선택된 도서 목록</h3>
+          <ul>
+            <li v-for="(book, index) in selectedBooks" :key="index">
+              {{index + 1}} : {{book.name}}
+            </li>
+          </ul>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>직원 확인</title>
+  <!-- Bootstrap CSS 링크 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script>
+    function checkEmployee(event) {
+      event.preventDefault();
+
+      const sabun = document.querySelector("#sabun").value;
+      const irum = document.querySelector("#irum").value;
+
+      fetch("/checkEmployee", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ sabun, irum })
+      })
+      .then(res => res.json())
+      .then(data => {
+        if (data.valid) {
+          // 유효한 직원일 경우 result.html로 이동
+          window.location.href = `/result.html?sabun=${sabun}&irum=${encodeURIComponent(irum)}`;
+        } else {
+          // 유효하지 않으면 메시지 표시
+          document.querySelector("#msg").innerHTML =
+            "<div class='alert alert-danger mt-3'>⚠️ 직원정보가 일치하지 않습니다. 다시 입력하세요.</div>";
+        }
+      });
+    }
+  </script>
+</head>
+<body class="bg-white text-dark container py-5">
+  <h3 class="mb-4">👤 담당 고객 조회</h3>
+  <form onsubmit="checkEmployee(event)">
+    <div class="mb-3">
+      <label for="sabun" class="form-label">직원번호</label>
+      <input type="text" class="form-control" id="sabun" required>
+    </div>
+    <div class="mb-3">
+      <label for="irum" class="form-label">직원이름</label>
+      <input type="text" class="form-control" id="irum" required>
+    </div>
+    <button type="submit" class="btn btn-outline-dark">확인</button>
+  </form>
+  <div id="msg"></div>
+</body>
+</html>

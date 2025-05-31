@@ -1,0 +1,17 @@
+/* 전체 앱 레이아웃 */
+#app {
+  max-width: 960px;
+  margin: 60px auto; /* ✅ 위쪽 여백 추가 (40 → 60) */
+  padding: 30px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+}
+
+/* 페이지 제목 */
+h2 {
+  text-align: center;
+  border-bottom: 3px solid #007aff;
+  display: inline-block;
+  padding-bottom: 6px;
+}
