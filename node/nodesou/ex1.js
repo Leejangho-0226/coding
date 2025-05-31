@@ -1,7 +1,7 @@
 console.log("vsc에서 실습");
 
 function f1(){
-    console.log("hello");
+    console.log("hello1");
     f2();
 }
 
