@@ -5,7 +5,7 @@ import path from 'path';
 import cors from 'cors';                            
 import { fileURLToPath } from 'url';                
 
-//  jikwon 라우터 모듈 불러오기
+//  jikwon 라우터 모듈 불러오기!
 import jikwonRouter from './routes/jikwon.js';      //  routes 폴더 안에 있는 jikwon.js 모듈을 import
 import gogekRouter from './routes/gogek.js';
 
