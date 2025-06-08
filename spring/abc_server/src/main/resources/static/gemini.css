@@ -1,0 +1,70 @@
+/* gemini.css - html 구조에 맞춰 최적화된 흑백 미니멀 스타일 */
+
+body {
+    background-color: #ffffff;
+    color: #222222;
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+    padding: 40px 20px;
+    line-height: 1.6;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+h1, h2, h3 {
+    color: #111111;
+    font-weight: 600;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 0.3em;
+    margin-top: 1em;
+}
+
+a {
+    color: #333333;
+    text-decoration: none;
+    border-bottom: 1px dotted #888;
+}
+
+a:hover {
+    color: #000000;
+    border-bottom: 1px solid #000;
+}
+
+textarea {
+    width: 100%;
+    max-width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    background-color: #fafafa;
+    font-size: 1rem;
+    border-radius: 4px;
+    resize: vertical;
+    box-sizing: border-box;
+}
+
+button {
+    background-color: #eee;
+    color: #222;
+    border: 1px solid #ccc;
+    padding: 10px 16px;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #ddd;
+}
+
+pre#response {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    padding: 15px;
+    font-size: 1rem;
+    white-space: pre-wrap;
+    margin-top: 10px;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
