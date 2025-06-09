@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="a3332971-ec0a-463f-9e58-e1e197754509" name="변경" comment="">
+      <change beforePath="$PROJECT_DIR$/../../react/reactpro1" beforeDir="false" afterPath="$PROJECT_DIR$/../../react/reactpro1" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../react/reactpro10" beforeDir="false" afterPath="$PROJECT_DIR$/../../react/reactpro10" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../react/reactpro11todo" beforeDir="false" afterPath="$PROJECT_DIR$/../../react/reactpro11todo" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../react/reactpro11todo_ex" beforeDir="false" afterPath="$PROJECT_DIR$/../../react/reactpro11todo_ex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../react/reactpro12route" beforeDir="false" afterPath="$PROJECT_DIR$/../../react/reactpro12route" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../react/reactpro12route_ex" beforeDir="false" afterPath="$PROJECT_DIR$/../../react/reactpro12route_ex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../react/reactpro13redux" beforeDir="false" afterPath="$PROJECT_DIR$/../../react/reactpro13redux" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../react/reactpro14redux" beforeDir="false" afterPath="$PROJECT_DIR$/../../react/reactpro14redux" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../react/reactpro14redux_ex" beforeDir="false" afterPath="$PROJECT_DIR$/../../react/reactpro14redux_ex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../react/reactpro15redux_db" beforeDir="false" afterPath="$PROJECT_DIR$/../../react/reactpro15redux_db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../react/reactpro15redux_db_ex" beforeDir="false" afterPath="$PROJECT_DIR$/../../react/reactpro15redux_db_ex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../react/reactpro16rest" beforeDir="false" afterPath="$PROJECT_DIR$/../../react/reactpro16rest" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../react/reactpro16rest_ex" beforeDir="false" afterPath="$PROJECT_DIR$/../../react/reactpro16rest_ex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../react/reactpro16rest_ex2" beforeDir="false" afterPath="$PROJECT_DIR$/../../react/reactpro16rest_ex2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../react/reactpro2" beforeDir="false" afterPath="$PROJECT_DIR$/../../react/reactpro2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../react/reactpro3" beforeDir="false" afterPath="$PROJECT_DIR$/../../react/reactpro3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../react/reactpro4" beforeDir="false" afterPath="$PROJECT_DIR$/../../react/reactpro4" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../react/reactpro6_event" beforeDir="false" afterPath="$PROJECT_DIR$/../../react/reactpro6_event" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../react/reactpro6_ex" beforeDir="false" afterPath="$PROJECT_DIR$/../../react/reactpro6_ex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../react/reactpro7" beforeDir="false" afterPath="$PROJECT_DIR$/../../react/reactpro7" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../react/reactpro7_ex" beforeDir="false" afterPath="$PROJECT_DIR$/../../react/reactpro7_ex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../react/reactpro8memo" beforeDir="false" afterPath="$PROJECT_DIR$/../../react/reactpro8memo" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../react/reactpro9life" beforeDir="false" afterPath="$PROJECT_DIR$/../../react/reactpro9life" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+        <option value="HTML File" />
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 0
+}]]></component>
+  <component name="ProjectId" id="2xqQ2Hg1dFxwSiJmoEHbaHRrwq8" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration default="true" type="GroovyScriptRunConfiguration" factoryName="Groovy">
+      <setting name="path" value="" />
+      <setting name="vmparams" value="" />
+      <setting name="params" value="" />
+      <setting name="workDir" value="file://$PROJECT_DIR$" />
+      <setting name="debug" value="false" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="test.main" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="pack.TestApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-fbdcb00ec9e3-intellij.indexing.shared.core-IU-251.25410.129" />
+        <option value="bundled-js-predefined-d6986cc7102b-6a121458b545-JavaScript-IU-251.25410.129" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="디폴트 작업">
+      <changelist id="a3332971-ec0a-463f-9e58-e1e197754509" name="변경" comment="" />
+      <created>1748662916803</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1748662916803</updated>
+      <workItem from="1748662917861" duration="495000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
