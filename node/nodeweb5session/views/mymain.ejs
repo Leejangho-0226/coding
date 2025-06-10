@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>로그인 성공!</h2>
+  <p>환영합니다, <%= sessionId %> 세션 ID를 가진 사용자님 😎</p>
+
+  <hr />
+  <form action="/logout" method="get">
+        <button type="submit">로그아웃</button>
+  </form>
+</body>
+</html>
