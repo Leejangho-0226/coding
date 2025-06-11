@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>RESTful 실습</title>
+</head>
+<body>
+  <div>
+    <h3>모든 회원(get)</h3>
+    <button id="get-emps">모든 회원 정보</button>
+    <ul id="emp-list"></ul>
+  </div>
+
+  <!-- 직원 추가용 폼 -->
+  <div>
+    <h3>회원 추가(post)</h3>
+    <input type="text" id="new-emp-name" placeholder="이름 입력" required>
+    <input type="text" id="new-emp-position" placeholder="직책 입력" required>
+    <button id="add-emp">회원 추가</button>
+  </div>
+
+  <!-- 직원 수정용 폼 -->
+  <div>
+    <h3>회원 수정(put)</h3>
+    <input type="number" id="up-emp-id" placeholder="id" required>
+    <input type="text" id="up-emp-name" placeholder="이름" required>
+    <input type="text" id="up-emp-position" placeholder="직업" required>
+    <button id="up-emp">회원 수정</button>
+  </div>
+
+  <!-- 직원 삭제용 폼 -->
+  <div>
+    <h3>회원 삭제(delete)</h3>
+    <input type="number" id="del-emp-id" placeholder="삭제할 ID" required>
+    <button id="del-emp">회원 삭제</button>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const empList = document.getElementById("emp-list");
+      const getEmpButton = document.getElementById("get-emps");
+      const addEmpButton = document.getElementById("add-emp");
+      const updateEmpButton = document.getElementById("up-emp");
+      const deleteEmpButton = document.getElementById("del-emp");
+
+      // 전체 회원 조회
+      getEmpButton.addEventListener('click', () => {
+        fetch("/emp")
+          .then(response => response.json())
+          .then(data => {
+            empList.innerHTML = '';
+            data.forEach(emp => {
+              const li = document.createElement('li');
+              li.textContent = `${emp.id} : ${emp.name}님은 ${emp.position}`;
+              empList.appendChild(li);
+            });
+          })
+          .catch(error => console.log('fetch err : ', error));
+      });
+
+      // 회원 추가 (POST)
+      addEmpButton.addEventListener('click', () => {
+        const name = document.getElementById("new-emp-name").value.trim();
+        const position = document.getElementById("new-emp-position").value.trim();
+
+        if (!name || !position) {
+          alert("이름과 직책을 모두 입력해주세요.");
+          return;
+        }
+
+        fetch("/emp", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ name, position })
+        })
+          .then(response => response.json())
+          .then(emp => {
+            alert("회원 추가 완료!");
+            document.getElementById("new-emp-name").value = '';
+            document.getElementById("new-emp-position").value = '';
+            const li = document.createElement('li');
+            li.textContent = `${emp.id} : ${emp.name}님은 ${emp.position}`;
+            empList.appendChild(li);
+          })
+          .catch(error => console.log("추가 실패: ", error));
+      });
+
+      // 회원 수정 (PUT)
+      updateEmpButton.addEventListener('click', () => {
+        const id = document.getElementById("up-emp-id").value.trim();
+        const name = document.getElementById("up-emp-name").value.trim();
+        const position = document.getElementById("up-emp-position").value.trim();
+
+        if (!id || !name || !position) {
+          alert("ID, 이름, 직책 모두 입력해주세요.");
+          return;
+        }
+
+        fetch(`/emp/${id}`, {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ name, position })
+        })
+          .then(response => {
+            if (!response.ok) throw new Error("수정 실패");
+            return response.json();
+          })
+          .then(updated => {
+            alert(`ID ${updated.id}번 회원 수정 완료!`);
+            getEmpButton.click(); // 목록 갱신
+            document.getElementById("up-emp-id").value = '';
+            document.getElementById("up-emp-name").value = '';
+            document.getElementById("up-emp-position").value = '';
+          })
+          .catch(error => {
+            alert("수정 실패: " + error.message);
+          });
+      });
+
+      // 회원 삭제 (DELETE)
+      deleteEmpButton.addEventListener('click', () => {
+        const id = document.getElementById("del-emp-id").value.trim();
+        if (!id) {
+          alert("삭제할 ID를 입력해주세요.");
+          return;
+        }
+
+        if (!confirm(`정말로 ID ${id}번을 삭제할까요!?!?`)) return;
+
+        fetch(`/emp/${id}`, {
+          method: "DELETE"
+        })
+          .then(response => {
+            if (!response.ok) throw new Error("삭제 실패 OR ID 없음 다시 확인해 주세요!");
+            return response.json();
+          })
+          .then(deleted => {
+            alert(`ID ${deleted.id}번 회원 삭제 완료!`);
+            getEmpButton.click(); // 목록 갱신
+            document.getElementById("del-emp-id").value = '';
+          })
+          .catch(error => {
+            alert("삭제 실패: " + error.message);
+          });
+      });
+    });
+  </script>
+</body>
+</html>
